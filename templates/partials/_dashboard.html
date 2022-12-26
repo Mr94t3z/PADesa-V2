@@ -30,15 +30,19 @@
 
           <input type="hidden" name="id_barang" value={{ barang.id_barang }}>
           <input type="hidden" name="id_user" value={{ id_user }}>
-          <input type="hidden" name="qty" value="1" min="1" max={{ barang.qty }} class="form-control btn-sm" style="width:60px;">
+          <input type="hidden" name="qty" value="1" min="1" max={{ barang.qty }} class="form-control btn-sm"
+            style="width:60px;">
           <input type="hidden" name="stok_barang" value={{ barang.stok_barang }}>
-         
+
           {% if barang.stok_barang <= 0 %}
-          <button type="submit" class="btn-sm btn-gradient-primary btn-rounded btn-fw invisible" style="margin-right: 105px;" onclick="return confirm('Apakah anda ingin meminjam {{ barang.nama_barang }}?')">
+          <button type="submit" class="btn-sm btn-gradient-primary btn-rounded btn-fw invisible"
+            style="margin-right: 105px;"
+            onclick="return confirm('Apakah anda ingin meminjam {{ barang.nama_barang }}?')">
             Pinjam
           </button>
           {% else %}
-          <button type="submit" class="btn-sm btn-gradient-primary btn-rounded btn-fw" style="margin-right: 105px;" onclick="return confirm('Apakah anda ingin meminjam {{ barang.nama_barang }}?')">
+          <button type="submit" class="btn-sm btn-gradient-primary btn-rounded btn-fw" style="margin-right: 105px;"
+            onclick="return confirm('Apakah anda ingin meminjam {{ barang.nama_barang }}?')">
             Pinjam
           </button>
           {% endif %}
@@ -49,6 +53,8 @@
   </div>
   {% endfor %}
 </div>
+
+
 
 
 <div class="row">
@@ -75,8 +81,9 @@
                 <td class="text-center"> {{ loop.index }} </td>
                 {% for user in users %}
                 {% if peminjaman.id_user == user.id %}
-                <td> 
-                  <img src={{ url_for('static', filename='backend/assets/images/faces/user.png') }} class="me-2" alt="image"> 
+                <td>
+                  <img src={{ url_for('static', filename='backend/assets/images/faces/user.png') }} class="me-2"
+                    alt="image">
                   {{ user.name }}
                 </td>
                 {% endif %}
@@ -100,18 +107,29 @@
                   </label>
                 </td>
                 {% endif %}
-                <td class="text-center"> {{ peminjaman.tgl_pinjam }} </td>
+                <td class="text-center"> {{ peminjaman.tgl_pinjam.date().strftime('%d-%m-%Y') }} </td>
                 {% for pengembalian in pengembalians %}
                 {% if pengembalian.id_peminjaman == peminjaman.id_peminjaman and pengembalian.tgl_pengembalian %}
-                <td class="text-center"> {{ pengembalian.tgl_pengembalian }} </td>
-                {% elif pengembalian.id_peminjaman == peminjaman.id_peminjaman and pengembalian.tgl_pengembalian == None %}
-                <td class="text-center"> Tidak Ada </td>
+                <td class="text-center"> {{ pengembalian.tgl_pengembalian.date().strftime('%d-%m-%Y') }} </td>
                 {% endif %}
                 {% endfor %}
+                {% if peminjaman.status == False %}
+                <td class="text-center"> - </td>
+                {% endif %}
               </tr>
               {% endfor %}
             </tbody>
           </table>
+          <div class="pagination-sm float-end mt-4">
+            <ul class="pagination">
+              {% for page in range(1, num_pages+1) %}
+              <li class="page-link">
+                <a href="?page={{ page }}" class="text-primary {% if page == current_page %}active{% endif %}" style="text-decoration: none;">{{ page }}
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
         </div>
       </div>
     </div>

@@ -39,24 +39,40 @@
                         <td> {{ barang.nama_barang }} </td>
                         <td> {{ barang.jenis_barang }} </td>
                         <td> {{ barang.stok_barang }} </td>
-                        <td> 
-                            <img src={{ url_for('static', filename='backend/assets/images/barang/'+barang.foto_barang ) }}> 
+                        <td>
+                            <img
+                                src={{ url_for('static', filename='backend/assets/images/barang/'+barang.foto_barang ) }}>
                         </td>
                         <td>
-                             <!-- update -->
-                            <a href="{{ url_for('edit_barang', id_barang=barang.id_barang) }}" type="submit" class="btn btn-dark btn-rounded btn-sm link-light">
+                            <!-- update -->
+                            <a href="{{ url_for('edit_barang', id_barang=barang.id_barang) }}" type="submit"
+                                class="btn btn-dark btn-rounded btn-sm link-light">
                                 <i class="mdi mdi-table-edit"></i>
                             </a>
                             <!-- delete -->
-                            <a href="{{ url_for('delete_barang', id_barang=barang.id_barang) }}" type="submit" class="btn btn-danger btn-rounded btn-sm" onclick="return confirm('Apakah anda ingin menghapus barang {{ barang.nama_barang }}?')" title="Delete Barang">
+                            <a href="{{ url_for('delete_barang', id_barang=barang.id_barang) }}" type="submit"
+                                class="btn btn-danger btn-rounded btn-sm"
+                                onclick="return confirm('Apakah anda ingin menghapus barang {{ barang.nama_barang }}?')"
+                                title="Delete Barang">
                                 <i class="mdi mdi-window-close"></i>
                             </a>
                         </td>
-                        
+
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
+            <div class="pagination-sm float-end mt-4">
+                <ul class="pagination">
+                    {% for page in range(1, num_pages+1) %}
+                    <li class="page-link">
+                        <a href="?page={{ page }}" class="text-primary {% if page == current_page %}active{% endif %}"
+                            style="text-decoration: none;">{{ page }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
 </div>

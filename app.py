@@ -10,9 +10,6 @@ from flask_migrate import Migrate
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship, backref
 
-# Add Database
-# basedir = 'sqlite:///' + os.path.join(os.path.abspath(os.path.dirname(__file__)), 'padesa.db')
-
 # basedir
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -20,7 +17,10 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
 
 # sqlalchemy database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///padesa.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database/padesa.db'
+
+# disable notification
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Secret Key
 app.config['SECRET_KEY'] = 'mr.94t3z'
@@ -195,8 +195,14 @@ def register():
 @ app.route('/dashboard', methods=["GET", "POST"])
 @ login_required
 def user_dashboard():
+
+    page = request.args.get('page', default=1, type=int)
+    peminjamans = Peminjamans().query.order_by(
+        Peminjamans.tgl_pinjam.desc()).paginate(page=page, per_page=5)
+    num_pages = peminjamans.pages
+    current_page = peminjamans.page
+    peminjamans = peminjamans.items
     pengembalians = Pengembalians().query.all()
-    peminjamans = Peminjamans().query.all()
     barangs = Barangs().query.all()
     users = Users().query.all()
 
@@ -218,7 +224,7 @@ def user_dashboard():
         db.session.commit()
         return redirect(url_for('user_dashboard'))
 
-    return render_template('user-dashboard.html', id_user=current_user.id, name=current_user.name, admin=current_user.is_admin, pengembalians=pengembalians, peminjamans=peminjamans, barangs=barangs, users=users)
+    return render_template('user-dashboard.html', num_pages=num_pages, current_page=current_page, id_user=current_user.id, name=current_user.name, admin=current_user.is_admin, pengembalians=pengembalians, peminjamans=peminjamans, barangs=barangs, users=users)
 
 
 # show users page
@@ -228,9 +234,13 @@ def show_user():
     # if Admin
     if current_user.is_admin == True:
 
-        items = Users().query.all()
+        page = request.args.get('page', default=1, type=int)
+        items = Users().query.paginate(page=page, per_page=5)
+        num_pages = items.pages
+        current_page = items.page
+        items = items.items
 
-        return render_template('user-management.html', items=items, name=current_user.name, admin=current_user.is_admin)
+        return render_template('user-management.html', items=items, name=current_user.name, admin=current_user.is_admin, num_pages=num_pages, current_page=current_page)
 
     # if User
     if current_user.is_admin == False:
@@ -300,9 +310,13 @@ def show_barang():
     # if Admin
     if current_user.is_admin == True:
 
-        barangs = Barangs().query.all()
+        page = request.args.get('page', default=1, type=int)
+        barangs = Barangs().query.paginate(page=page, per_page=5)
+        num_pages = barangs.pages
+        current_page = barangs.page
+        barangs = barangs.items
 
-        return render_template('barang-management.html', barangs=barangs, name=current_user.name, admin=current_user.is_admin)
+        return render_template('barang-management.html', barangs=barangs, name=current_user.name, admin=current_user.is_admin, num_pages=num_pages, current_page=current_page)
 
     # if User
     if current_user.is_admin == False:
@@ -421,11 +435,15 @@ def show_peminjaman():
     # if Admin
     if current_user.is_admin == True:
 
-        peminjamans = Peminjamans().query.all()
+        page = request.args.get('page', default=1, type=int)
+        peminjamans = Peminjamans().query.paginate(page=page, per_page=5)
+        num_pages = peminjamans.pages
+        current_page = peminjamans.page
+        peminjamans = peminjamans.items
         barangs = Barangs().query.all()
         users = Users().query.all()
 
-        return render_template('peminjaman-management.html', peminjamans=peminjamans, name=current_user.name, admin=current_user.is_admin, barangs=barangs, users=users)
+        return render_template('peminjaman-management.html', peminjamans=peminjamans, name=current_user.name, admin=current_user.is_admin, barangs=barangs, users=users, num_pages=num_pages, current_page=current_page)
 
     # if User
     if current_user.is_admin == False:
@@ -510,12 +528,16 @@ def show_pengembalian():
     # if Admin
     if current_user.is_admin == True:
 
-        pengembalians = Pengembalians().query.all()
+        page = request.args.get('page', default=1, type=int)
+        pengembalians = Pengembalians().query.paginate(page=page, per_page=5)
+        num_pages = pengembalians.pages
+        current_page = pengembalians.page
+        pengembalians = pengembalians.items
         peminjamans = Peminjamans().query.all()
         barangs = Barangs().query.all()
         users = Users().query.all()
 
-        return render_template('pengembalian-management.html', id_user=current_user.id, name=current_user.name, admin=current_user.is_admin, pengembalians=pengembalians, peminjamans=peminjamans, barangs=barangs, users=users)
+        return render_template('pengembalian-management.html', id_user=current_user.id, name=current_user.name, admin=current_user.is_admin, pengembalians=pengembalians, peminjamans=peminjamans, barangs=barangs, users=users, num_pages=num_pages, current_page=current_page)
 
     # if User
     if current_user.is_admin == False:
