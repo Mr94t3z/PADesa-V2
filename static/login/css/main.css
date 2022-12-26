@@ -371,11 +371,11 @@ iframe {
   z-index: -1;
   width: 300%;
   height: 100%;
-  background: #020A64;
-  background: -webkit-linear-gradient(right, #020A64, #00A242, #020A64, #00A242);
-  background: -o-linear-gradient(right, #020A64, #00A242, #020A64, #00A242);
-  background: -moz-linear-gradient(right, #020A64, #00A242, #020A64, #00A242);
-  background: linear-gradient(right, #020A64, #00A242, #020A64, #00A242);
+  background: #00AF91;
+  background: -webkit-linear-gradient(right, #00AF91, #F6DCCD, #00AF91, #F6DCCD);
+  background: -o-linear-gradient(right, #00AF91, #F6DCCD, #00AF91, #F6DCCD);
+  background: -moz-linear-gradient(right, #00AF91, #F6DCCD, #00AF91, #F6DCCD);
+  background: linear-gradient(right, #00AF91, #F6DCCD, #00AF91, #F6DCCD);
   top: 0;
   left: -100%;
 

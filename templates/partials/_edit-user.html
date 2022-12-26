@@ -1,9 +1,9 @@
-  {% if update.is_admin == True %}
+  {% if current_user.is_admin == True %}
   <div class="page-header">
     <h3 class="page-title">
       <span class="page-title-icon bg-gradient-primary text-white me-2">
         <i class="mdi mdi-account-card-details"></i>
-      </span> Edit Data
+      </span> Edit User
     </h3>
     <nav aria-label="breadcrumb">
       <ul class="breadcrumb">
@@ -46,7 +46,7 @@
     </div>
   </div>
 
-  {% elif update.is_admin == False %}
+  {% elif current_user.is_admin == False %}
   <div class="page-header">
     <h3 class="page-title">
       <span class="page-title-icon bg-gradient-primary text-white me-2">
@@ -81,7 +81,7 @@
             <input type="password" class="form-control" name="password" id="password" placeholder="New Password">
           </div>
           <button type="submit" class="btn btn-gradient-info me-2">Submit</button>
-          <a href={{ url_for('show_user')}} type="button" class="btn btn-light">Cancel</a>
+          <a href={{ url_for('user_dashboard')}} type="button" class="btn btn-light">Cancel</a>
         </form>
       </div>
     </div>
