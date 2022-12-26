@@ -6,4 +6,4 @@ __pycache__/
 
 # database
 migrations/
-# database/padesa.dbenv/
+# database/padesa.db
