@@ -28,7 +28,7 @@ app.config['SECRET_KEY'] = 'mr.94t3z'
 # upload barang image
 photos = UploadSet('photos', IMAGES)
 app.config['UPLOADED_PHOTOS_DEST'] = os.path.join(
-    basedir, 'static/backend/assets/images/barang')
+    basedir, 'static/backend/assets/images/photos')
 
 configure_uploads(app, photos)
 
@@ -278,7 +278,24 @@ def edit_user(id):
 
     # if User
     if current_user.is_admin == False:
-        return error_404(e)
+
+        if id != current_user.id:
+
+            return redirect(url_for('user_dashboard'))
+
+        update = current_user
+
+        if request.method == 'POST':
+            update.name = request.form.get('name')
+            update.email = request.form.get('email')
+            password = request.form.get('password')
+            update.password = generate_password_hash(password, method='sha256')
+
+            db.session.add(update)
+            db.session.commit()
+            return redirect(url_for('user_dashboard'))
+
+    return render_template('edit-user.html', name=current_user.name, update=update)
 
 
 # delete user

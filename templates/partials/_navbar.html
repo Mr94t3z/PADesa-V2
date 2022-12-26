@@ -1,8 +1,8 @@
 <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
   <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-    <a class="navbar-brand brand-logo" href="#"><img
+    <a class="navbar-brand brand-logo" href={{ url_for('user_dashboard')}}><img
         src={{ url_for('static', filename='backend/assets/images/logo.svg') }} alt="logo" /></a>
-    <a class="navbar-brand brand-logo-mini" href="#"><img
+    <a class="navbar-brand brand-logo-mini" href={{ url_for('user_dashboard')}}><img
         src={{ url_for('static', filename='backend/assets/images/logo-mini.png') }} alt="logo" /></a>
   </div>
   <div class="navbar-menu-wrapper d-flex align-items-stretch">
@@ -24,9 +24,9 @@
         <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown"
           aria-expanded="false">
           <div class="nav-profile-img">
-            {% if admin == False %}
+            {% if current_user.is_admin == False %}
             <img src={{ url_for('static', filename='backend/assets/images/faces/user.png') }} alt="profile">
-            {% elif admin == True %}
+            {% elif current_user.is_admin == True %}
             <img src={{ url_for('static', filename='backend/assets/images/faces/taopik.png') }} alt="profile">
             {% endif %}
             <span class="availability-status online"></span>
@@ -36,7 +36,7 @@
           </div>
         </a>
         <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-          <a class="dropdown-item" href={{ url_for('user_dashboard') }}>
+          <a class="dropdown-item" href={{ url_for('edit_user', id=current_user.id) }} type="submit">
             <i class="mdi mdi-account me-2 text-primary"></i> My Profile </a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href={{ url_for('logout') }}>
