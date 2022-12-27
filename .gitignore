@@ -1,6 +1,5 @@
 # ptcache
-__pycache__/
-env/lib/python3.8/site-packages/__pycache__/
+**/__pycache__
 
 
 # virtual env
