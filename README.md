@@ -3,7 +3,7 @@ PADesa merupakan aplikasi Peminjaman Alat Desa yang dirancang menggunakan Python
 
 # Here's a step-by-step guide:
 
-1. `Clone` this repository:
+- `Clone` this repository:
 
 ```bash
 https://github.com/Mr94t3z/PADesa-V2.git
