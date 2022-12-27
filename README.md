@@ -3,10 +3,12 @@ PADesa merupakan aplikasi Peminjaman Alat Desa yang dirancang menggunakan Python
 
 # Here's a step-by-step guide:
 
-1 `Clone` this repository:
+1. `Clone` this repository:
 
 ```bash
-\thttps://github.com/Mr94t3z/PADesa-V2.git
+<pre>
+    https://github.com/Mr94t3z/PADesa-V2.git
+</pre>
 ```
 
 2. Navigate to the `directory` containing the Flask application.
