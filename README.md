@@ -1,28 +1,28 @@
 # PADesa
 PADesa merupakan aplikasi Peminjaman Alat Desa yang dirancang menggunakan Python-Flask dan Bootstrap.
 
-# To run a Flask application on your local machine, you will need to have Python and Flask installed. Here's a step-by-step guide:
+# Here's a step-by-step guide:
 
-1. Clone the repository containing the Flask application to your local machine. If you are using Git, you can do this by running the following command:
+## 1. Clone the repository containing the Flask application to your local machine. If you are using Git, you can do this by running the following command:
 
 ```bash
 https://github.com/Mr94t3z/PADesa-V2.git
 ```
 
-2. Navigate to the directory containing the Flask application.
-3. Install the required libraries and packages by running the following command:
+## 2. Navigate to the directory containing the Flask application.
+## 3. Install the required libraries and packages by running the following command:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Create a virtual environment for the Flask application. This is optional, but it is a good practice to isolate the dependencies of your application from the system's Python packages. To create a virtual environment, run the following command:
+## 4. Create a virtual environment for the Flask application. This is optional, but it is a good practice to isolate the dependencies of your application from the system's Python packages. To create a virtual environment, run the following command:
 
 ```bash
 python -m venv env
 ```
 
-5. Activate the virtual environment by running the following command:
+## 5. Activate the virtual environment by running the following command:
 
 ```bash
 # On Windows
@@ -32,7 +32,7 @@ env\scripts\activate
 source env/bin/activate
 ```
 
-6. Run the Flask application by using the following command:
+## 6. Run the Flask application by using the following command:
 
 ```bash
 flask run
@@ -50,4 +50,4 @@ This will start the Flask development server, and you should see the following o
  * Debugger PIN: 123-456-789
 ```
 
-7. You can now access the Flask application in your web browser by visiting http://127.0.0.1:5000/. 
+## 7. You can now access the Flask application in your web browser by visiting http://127.0.0.1:5000/. 
