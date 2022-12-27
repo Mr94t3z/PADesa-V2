@@ -50,4 +50,4 @@ This will start the Flask development server, and you should see the following o
  * Debugger PIN: 123-456-789
 ```
 
-Seventh, you can now access the Flask application in your web browser by visiting http://127.0.0.1:5000/. 
+Seventh, you can now access the Flask application in your web browser by `visiting` http://127.0.0.1:5000/. 
