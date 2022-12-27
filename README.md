@@ -3,26 +3,26 @@ PADesa merupakan aplikasi Peminjaman Alat Desa yang dirancang menggunakan Python
 
 # Here's a step-by-step guide:
 
-#### 1. Clone the repository containing the Flask application to your local machine. If you are using Git, you can do this by running the following command:
+First, `clone` this repository:
 
 ```bash
 https://github.com/Mr94t3z/PADesa-V2.git
 ```
 
-#### 2. Navigate to the directory containing the Flask application.
-#### 3. Install the required libraries and packages by running the following command:
+Second, navigate to the `directory` containing the Flask application.
+Third, `install` the `required libraries` and `packages` by running the following command:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-#### 4. Create a virtual environment for the Flask application. This is optional, but it is a good practice to isolate the dependencies of your application from the system's Python packages. To create a virtual environment, run the following command:
+Fourth, create a `virtual environment` for the Flask application. This is optional, but it is a good practice to isolate the dependencies of your application from the system's Python packages. To create a virtual environment, run the following command:
 
 ```bash
 python -m venv env
 ```
 
-#### 5. Activate the virtual environment by running the following command:
+Fifth, `activate` the `virtual environment` by running the following command:
 
 ```bash
 # On Windows
@@ -32,7 +32,7 @@ env\scripts\activate
 source env/bin/activate
 ```
 
-#### 6. Run the Flask application by using the following command:
+Sixth, `run` the Flask application by using the following command:
 
 ```bash
 flask run
@@ -50,4 +50,4 @@ This will start the Flask development server, and you should see the following o
  * Debugger PIN: 123-456-789
 ```
 
-#### 7. You can now access the Flask application in your web browser by visiting http://127.0.0.1:5000/. 
+Seventh, you can now access the Flask application in your web browser by visiting http://127.0.0.1:5000/. 
